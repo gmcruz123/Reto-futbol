@@ -1,6 +1,6 @@
 var objEquipos = [];
 class Equipo {
-    constructor(nombre, img, Director, miembros, resenia, categoria, puntos, liga) {
+    constructor(nombre, img, Director, miembros, resenia, categoria, puntos, liga,ganados,empatados,perdidos) {
         this.nombre = nombre;
         this.img = img;
         this.Director = Director;
@@ -8,7 +8,11 @@ class Equipo {
         this.resenia = resenia;
         this.categoria = categoria;
         this.puntos = puntos;
-        this.liga = liga
+        this.liga = liga;
+        this.ganados=ganados;
+        this.empatados= empatados;
+        this.perdidos=perdidos;
+
     }
 }
 
@@ -19,7 +23,11 @@ var millonarios = new Equipo("Millonarios",
     "Muyyy buen equipo",
     "Primera C",
     10,
-    "Aguila");
+    "Aguila",
+    12,
+    6,
+    2
+);
 
 var tolima = new Equipo("Tolima",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgfQhbS9MuaBuvIy3Ub5T6XvvTn04xIBuqO3w7xeuCJkOj7eKjXg",
@@ -28,7 +36,10 @@ var tolima = new Equipo("Tolima",
     "Muyyy buen equipo",
     "Primera C",
     8,
-    "Postobon")
+    "Postobon",
+    10,
+    5,
+    1)
 
 var pasto = new Equipo("Pasto",
     "https://www.elespectador.com/sites/default/files/pas.jpg",
@@ -37,7 +48,10 @@ var pasto = new Equipo("Pasto",
     "Muyyy buen equipo",
     "Primera B",
     7,
-    "Postobon")
+    "Postobon",
+    8,
+    4,
+    6)
 var envigado = new Equipo("Envigado",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVMnhlQkPaeyfRU7LPKT4GqIDaA6j4oNEwYEySpIyF1RHQqzKSTg",
     "Octavio Zambrano",
@@ -45,7 +59,10 @@ var envigado = new Equipo("Envigado",
     "Muyyy buen equipo",
     "Primera A",
     5,
-    "Aguila")
+    "Aguila",
+    15,
+    3,
+    6)
 
 var leones = new Equipo("Leones",
     "http://as01.epimg.net/colombia/imagenes/2017/01/31/futbol/1485829608_318593_1485832987_noticia_normal.jpg",
@@ -54,7 +71,10 @@ var leones = new Equipo("Leones",
     "Muyyy buen equipo",
     "Primera B",
     18,
-    "Postobon")
+    "Postobon",
+    10,
+    9,
+    8)
 
 var caldas = new Equipo("Once Caldas",
     "https://cde.peru.com//ima/0/1/4/4/9/1449893/924x530/seleccion-peruana.jpg",
@@ -63,7 +83,10 @@ var caldas = new Equipo("Once Caldas",
     "Muyyy buen equipo",
     "Primera B",
     3,
-    "Aguila")
+    "Aguila",
+    11,
+    9,
+    5)
 
 var patriotas = new Equipo("Patriotas",
     "https://images.eltiempo.digital/files/article_multimedia/uploads/2018/08/01/5b62393d23637.png",
@@ -72,7 +95,8 @@ var patriotas = new Equipo("Patriotas",
     "Muyyy buen equipo",
     "Primera C",
     10,
-    "Aguila")
+    "Aguila",
+    7,4,3)
 
 
 
@@ -83,7 +107,8 @@ var santaFe = new Equipo("Santa Fe",
     "Muyyy buen equipo",
     "Primera C",
     8,
-    "Postobon")
+    "Postobon",
+    14,4,2)
 
 var equida = new Equipo("La Equidá",
     "https://www.elespectador.com/sites/default/files/pas.jpg",
@@ -92,7 +117,8 @@ var equida = new Equipo("La Equidá",
     "Muyyy buen equipo",
     "Primera B",
     7,
-    "Aguila")
+    "Aguila",
+    11,7,2)
 
 
 var bucaramanga = new Equipo("Bucaramanga",
@@ -102,7 +128,9 @@ var bucaramanga = new Equipo("Bucaramanga",
     "Muyyy buen equipo",
     "Primera A",
     5,
-    "Aguila")
+    "Aguila",
+    10,8,2
+)
 
 objEquipos.push(millonarios, tolima, pasto, envigado, equida, bucaramanga, santaFe, patriotas, caldas, leones);
 
@@ -184,13 +212,20 @@ function filtro() {
     });
 
     equiposFiltrados.forEach(function (item, index) {
-        pintarPorfiltro += `<tr>
+        pintarPorfiltro += `<tr class="table-primary">
                    <td>
                         <img src="` + item.img + `" class="avatar">
                     </td>
                    <td>
                    <p> ` + item.nombre + `</p>
                     </td>
+                    <td> `+item.ganados+`</td>
+                    <td> `+item.empatados+`</td>
+                    <td> `+item.perdidos+`</td>
+                    <td> ${item.ganados-item.perdidos}</td>
+                    <td> ${item.ganados-item.empatados}</td>
+                    <td> ${item.empatados+item.perdidos}</td>
+                    <td> ${item.puntos}</td>
                    </tr>`;
     })
 
